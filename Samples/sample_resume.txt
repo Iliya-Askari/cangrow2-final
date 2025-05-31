@@ -1,0 +1,30 @@
+"""
+Sara Ahmadi  
+Vanak St., Tehran, Iran | +989123456789 | sara.ahmadi.dev@gmail.com | github.com/saraahmadi | linkedin.com/in/saraahmadi
+
+About Me  
+Creative and detail-oriented Web Developer with 3+ years of experience designing, developing, and managing responsive websites and web applications. Skilled in front-end and back-end technologies, with a passion for clean code and user-focused design.
+
+Experience  
+Front-End Developer | Tapsell Technologies | Jul 2021 – Present  
+- Developed and maintained responsive websites using React.js, Tailwind CSS, and TypeScript.  
+- Improved load times by 30% through performance optimization and lazy loading techniques.  
+- Collaborated with UI/UX designers and back-end developers to implement interactive features.
+
+ Intern | CafeBazaar | Jan 2020 – Jun 2021  
+- Assisted in developing internal tools using Node.js and Express.  
+- Contributed to the migration of legacy code to modern JavaScript standards.  
+- Created reusable React components to speed up future development.
+
+Education  
+B.Sc. in Computer Engineering | Sharif University of Technology | 2016 – 2020
+
+
+
+Projects  
+- Personal Portfolio: Designed and deployed a mobile-friendly developer portfolio using Next.js and Tailwind.  
+- Task Manager App: A full-stack to-do app with authentication and CRUD features (MERN stack).
+
+Languages  
+Persian (Native), English (Professional)
+"""
