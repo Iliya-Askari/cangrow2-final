@@ -28,3 +28,8 @@ label_encoder = model_bundle['label_encoder']
 stop_words = model_bundle['stop_words']
 tokenizer = model_bundle['tokenizer']
 df_jobs = model_bundle['df_jobs']
+
+client = openai.OpenAI(
+    base_url="https://api.llm7.io/v1",
+    api_key="unused"
+)
