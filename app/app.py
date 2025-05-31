@@ -161,3 +161,26 @@ class MainPage(QWidget):
 
         main_layout.addLayout(grid_layout)
         self.setLayout(main_layout)
+
+    def open_file_dialog(self, file_type):
+        if file_type == 'pdf':
+            filter_str = "PDF Files (*.pdf)"
+        elif file_type == 'docx':
+            filter_str = "Word Files (*.docx)"
+        else:
+            filter_str = "Text Files (*.txt)"
+
+        file_path, _ = QFileDialog.getOpenFileName(self, f"Select {file_type.upper()} File", "", filter_str)
+        if file_path:
+            # استخراج متن بر اساس نوع فایل
+            if file_type == 'pdf':
+                text = extract_text_from_pdf(file_path)
+            elif file_type == 'docx':
+                text = extract_text_from_docx(file_path)
+            else:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    text = f.read()
+            self.switch_to_analysis(text)
+
+    def open_chat(self):
+        self.switch_to_analysis("") 
