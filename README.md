@@ -80,9 +80,10 @@ Once launched, the graphical interface will open.
 
 ## 🎬 Demo Video
 
-Watch the demo video below to see how the app works:
+See the Resume Matcher Web App in action!  
+📺 **Watch the demo video on Google Drive**  
+👉 [▶️ Click here to play the video](https://drive.google.com/file/d/1o85Av4E5XH2Im8jBsJI1-fesWfFWzXmL/view?usp=sharing)
 
-[Watch the demo](./Preview/demo.mp4)
 
 ---
 
