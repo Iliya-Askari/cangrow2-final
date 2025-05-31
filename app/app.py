@@ -101,3 +101,63 @@ def extract_text_from_docx(file_path):
     import docx
     doc = docx.Document(file_path)
     return "\n".join([p.text for p in doc.paragraphs])
+
+class MainPage(QWidget):
+    def __init__(self, switch_to_analysis):
+        super().__init__()
+        self.switch_to_analysis = switch_to_analysis
+
+        main_layout = QVBoxLayout()
+        main_layout.setAlignment(Qt.AlignCenter)
+        main_layout.setContentsMargins(60, 60, 60, 60)
+        main_layout.setSpacing(40)
+
+        self.label = QLabel("Choose Input Method")
+        self.label.setFont(QFont("Segoe UI", 18, QFont.Bold))
+        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setStyleSheet("color: #333;")
+        main_layout.addWidget(self.label)
+
+        grid_layout = QGridLayout()
+        grid_layout.setSpacing(30)
+        grid_layout.setContentsMargins(20, 20, 20, 20)
+
+        button_style = """
+            QPushButton {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 12px;
+                font-size: 14px;
+            }
+            QPushButton:hover {
+                background-color: #45a049;
+            }
+        """
+
+        buttons = [
+            ("Load PDF", 'pdf'),
+            ("Load DOCX", 'docx'),
+            ("Load Text", 'txt'),
+            ("Chat", 'chat')
+        ]
+
+        for idx, (label, btn_type) in enumerate(buttons):
+            row = idx // 2
+            col = idx % 2
+
+            btn = QPushButton(label)
+            btn.setFixedSize(QSize(150, 150))
+            btn.setFont(QFont("Segoe UI", 12, QFont.Bold))
+            btn.setStyleSheet(button_style)
+            btn.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+
+            if btn_type == 'chat':
+                btn.clicked.connect(self.open_chat)
+            else:
+                btn.clicked.connect(lambda _, t=btn_type: self.open_file_dialog(t))
+
+            grid_layout.addWidget(btn, row, col, alignment=Qt.AlignCenter)
+
+        main_layout.addLayout(grid_layout)
+        self.setLayout(main_layout)
