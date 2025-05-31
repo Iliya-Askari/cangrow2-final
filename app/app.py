@@ -96,3 +96,8 @@ def extract_text_from_pdf(file_path):
         for page in pdf.pages:
             text += page.extract_text() + "\n"
     return text
+
+def extract_text_from_docx(file_path):
+    import docx
+    doc = docx.Document(file_path)
+    return "\n".join([p.text for p in doc.paragraphs])
