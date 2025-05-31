@@ -105,13 +105,9 @@ After providing your input, click on the **"Analyze Resume"** button. The system
 
 ## ℹ️ App Documentation
 
-For more information about how the app works, setup details, and customization, refer to:
+📘 [Read the detailed app documentation](./app/README.md)
 
-```
-app/README.md
-```
-
-This is the main reference for understanding the application's behavior and usage.
+This is the main reference for understanding how the app works, how to set it up, and how to customize it.
 
 ---
 
