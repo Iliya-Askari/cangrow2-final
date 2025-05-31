@@ -123,4 +123,5 @@ This project is a desktop application built with **PyQt5** that allows users to 
 7. **User Actions**  
    User can clear the text or go back to the main menu to start over.
 
-
+8. **OutPut Exe**
+   Command to get exe output for app.py (```  pyinstaller --onefile --add-data "model_resume.pkl;." --hidden-import nltk app.py ```)
