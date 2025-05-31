@@ -82,7 +82,7 @@ Once launched, the graphical interface will open.
 
 Watch the demo video below to see how the app works:
 
-[Watch the demo](./preview/demo.mp4)
+[Watch the demo](./Preview/demo.mp4)
 
 ---
 
