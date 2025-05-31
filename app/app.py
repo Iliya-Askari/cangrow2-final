@@ -248,3 +248,27 @@ class AnalysisPage(QWidget):
 
         roadmap = generate_roadmap_text(suggested_skills)
         self.roadmap_text_edit.setPlainText(roadmap)
+        
+class MainWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Resume Analyzer & Chat")
+        self.setGeometry(200, 200, 800, 700)
+
+        self.stack = QStackedWidget()
+        main_page = MainPage(self.show_analysis_page)
+        self.analysis_page = AnalysisPage(self.show_main_page)
+
+        self.stack.addWidget(main_page)
+        self.stack.addWidget(self.analysis_page)
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.stack)
+        self.setLayout(layout)
+
+    def show_analysis_page(self, text):
+        self.analysis_page.set_text(text)
+        self.stack.setCurrentWidget(self.analysis_page)
+
+    def show_main_page(self):
+        self.stack.setCurrentIndex(0)
