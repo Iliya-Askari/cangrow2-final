@@ -184,3 +184,67 @@ class MainPage(QWidget):
 
     def open_chat(self):
         self.switch_to_analysis("") 
+        
+class AnalysisPage(QWidget):
+    def __init__(self, switch_to_main):
+        super().__init__()
+        self.switch_to_main = switch_to_main
+
+        layout = QVBoxLayout()
+
+        self.label = QLabel("Input Text / Chat:")
+        layout.addWidget(self.label)
+
+        self.text_edit = QTextEdit()
+        layout.addWidget(self.text_edit)
+
+        btn_layout = QHBoxLayout()
+        self.analyze_btn = QPushButton("Analyze Resume")
+        self.analyze_btn.clicked.connect(self.analyze_text)
+        btn_layout.addWidget(self.analyze_btn)
+
+        self.clear_btn = QPushButton("Clear Text")
+        self.clear_btn.clicked.connect(self.clear_text)
+        btn_layout.addWidget(self.clear_btn)
+
+        self.back_btn = QPushButton("Back to Main Menu")
+        self.back_btn.clicked.connect(self.back_to_main)
+        btn_layout.addWidget(self.back_btn)
+
+        layout.addLayout(btn_layout)
+
+        self.result_label = QLabel("")
+        layout.addWidget(self.result_label)
+
+        self.roadmap_text_edit = QTextEdit()
+        self.roadmap_text_edit.setReadOnly(True)
+        layout.addWidget(self.roadmap_text_edit)
+
+        self.setLayout(layout)
+
+    def set_text(self, text):
+        self.text_edit.setText(text)
+
+    def clear_text(self):
+        self.text_edit.clear()
+        self.result_label.setText("")
+        self.roadmap_text_edit.clear()
+
+    def back_to_main(self):
+        self.clear_text()
+        self.switch_to_main()
+
+    def analyze_text(self):
+        resume = self.text_edit.toPlainText().strip()
+        if not resume:
+            QMessageBox.warning(self, "Warning", "Please enter or load some text first.")
+            return
+        if len(resume.split()) < 100:
+            QMessageBox.warning(self, "Warning", "Resume text must be at least 100 words.")
+            return
+
+        predicted_job, suggested_skills = predict_job_and_missing_skills(resume)
+        self.result_label.setText(f"Suggested job : <b>{predicted_job}</b>")
+
+        roadmap = generate_roadmap_text(suggested_skills)
+        self.roadmap_text_edit.setPlainText(roadmap)
