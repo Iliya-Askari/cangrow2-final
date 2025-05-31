@@ -272,3 +272,9 @@ class MainWindow(QWidget):
 
     def show_main_page(self):
         self.stack.setCurrentIndex(0)
+        
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
