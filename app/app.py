@@ -43,3 +43,23 @@ def get_top_keywords(texts, top_n=30):
     words = tfidf.get_feature_names_out()
     top_idx = scores.argsort()[::-1][:top_n]
     return [words[i] for i in top_idx]
+
+def predict_job_and_missing_skills(resume_text):
+    cleaned = resume_text.lower()
+    cleaned = re.sub(r'[^a-zA-Z\s]', ' ', cleaned)
+    tokens = tokenizer.tokenize(cleaned)
+    tokens = [word for word in tokens if word not in stop_words]
+    cleaned_text = ' '.join(tokens)
+
+    vect = vectorizer.transform([cleaned_text])
+    pred_label = model.predict(vect)[0]
+    job_title = label_encoder.inverse_transform([pred_label])[0]
+
+    job_descs = df_jobs[df_jobs['Job Title'].str.lower().str.contains(job_title.lower())]
+    if job_descs.empty:
+        return job_title, []
+
+    top_keywords = get_top_keywords(job_descs['clean_description'], top_n=50)
+    resume_words = set(tokens)
+    missing_skills = [word for word in top_keywords if word not in resume_words]
+    return job_title, missing_skills[:20]
